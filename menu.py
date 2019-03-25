@@ -1,8 +1,5 @@
-print('-=-'*20)
-print('           SISTEMA DE CLÍNICA MÉDICA     ')
-print('-=-'*20)
-
 from cadastro import *
+from consulta import *
 
 def menu():
     opc = 0
@@ -26,7 +23,7 @@ def menu():
             cadastro_medico()
         if opc == 2:
             cadastro_paciente()
+        if opc == 3:
+            marcar_consulta()
 
-
-
-menu()
+ 
