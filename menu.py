@@ -1,11 +1,12 @@
 from cadastro import *
 from consulta import *
+from time import sleep
 
-def menu():
-    opc = 0
-    while opc != 0:
+def menu_interativo():
+    while True:
         print('''
         -------------------------------------------
+        0. Sair
         1. Cadastrar medico
         2. Cadastrar paciente
         3. Marcar consulta
@@ -19,11 +20,16 @@ def menu():
         --------------------------------------------
         ''')
         opc = int(input('Qual sua opção? '))
+        if opc == 0:
+            print('Saindo...')
+            sleep(2)
+            break
         if opc == 1:
             cadastro_medico()
         if opc == 2:
             cadastro_paciente()
         if opc == 3:
             marcar_consulta()
+        
 
  

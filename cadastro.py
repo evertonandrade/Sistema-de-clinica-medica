@@ -33,6 +33,7 @@ def cadastro_medico():
     dados['city']= input('Cidade: ')
     dados['estado'] = input('UF: ')
     dados['plano'] = input('Plano de saúde: ')
-
+    print('Cadastrado com sucesso!')
+    return dados
 
 
