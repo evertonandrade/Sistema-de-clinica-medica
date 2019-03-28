@@ -17,3 +17,6 @@ if atendimento == 1:
 if atendimento == 2:
     from medicos import *
     menu_medicos()
+if atendimento == 3:
+    from consulta import *
+    menu_consultas()
