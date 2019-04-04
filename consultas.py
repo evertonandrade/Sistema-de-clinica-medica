@@ -66,7 +66,6 @@ def remover_consulta():
 
 
 
-
 def menu_consultas():
     while True:
         print('''1 - Marcar nova consulta
@@ -92,6 +91,8 @@ def menu_consultas():
         elif opcao == 2:
             listar_consultas()
         elif opcao == 3:
+            remover_consulta()
+        elif opcao == 4:
             break
         else:
             print("Opção inválida!")

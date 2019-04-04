@@ -29,11 +29,32 @@ def listar_pacientes():
         print('Nenhum paciente cadastrado!')
 
 
+def remover_paciente():
+    try:
+        with open('dados_pacientes.json') as dados_pacientes:
+            lista_pacientes = json.load(dados_pacientes)
+            cpf = input('Qual o CPF do paciente que você deseja remover?')
+            for paciente in lista_pacientes:
+                if paciente['cpf'] == cpf:
+                    lista_pacientes.remove(paciente)
+                    with open('dados_pacientes.json', mode='w') as dados_pacientes:
+                        pacientes = json.dumps(lista_pacientes)
+                        dados_pacientes.write(pacientes)
+                    print('Paciente removido com sucesso!\n')
+                else:
+                    print('Paciente não encontrado!\n')
+                    menu_pacientes()
+    except:
+        print('Nenhum CPF informado')
+        menu_pacientes()
+
+
 def menu_pacientes():
     while True:
         print('''1 - Cadastrar novo paciente
 2 - Listar pacientes
-3 - Sair
+3 - Remover paciente
+4 - Sair
         ''')
         opcao = int(input('Selecione uma opção: \n'))
         if opcao == 1:
@@ -54,6 +75,8 @@ def menu_pacientes():
         elif opcao == 2:
             listar_pacientes()
         elif opcao == 3:
+            remover_paciente()
+        elif opcao == 4:
             break
         else:
             print("Opção inválida!")

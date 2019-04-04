@@ -36,15 +36,15 @@ def listar_medicos():
 
 def remover_medico():
     try:
-        with open('dados_medicos.json', ) as dm:
-            lista_medicos = json.load(dm)
-            cpf = str(input('Qual o CPF do médico que você deseja remover?'))
+        with open('dados_medicos.json') as dados_medicos:
+            lista_medicos = json.load(dados_medicos)
+            cpf = input('Qual o CPF do médico que você deseja remover?')
             for medico in lista_medicos:
                 if medico['cpf'] == cpf:
                     lista_medicos.remove(medico)
-                    with open('dados_medicos.json', mode='w') as dm:
+                    with open('dados_medicos.json', mode='w') as dados_medicos:
                         medicos = json.dumps(lista_medicos)
-                        dm.write(medicos)
+                        dados_medicos.write(medicos)
                     print('Médico removido com sucesso!\n')
                 else:
                     print('Médico não encontrado!\n')
@@ -52,7 +52,7 @@ def remover_medico():
     except:
         print('Nenhum CPF informado')
         menu_medicos()
-        
+
         
 
 def menu_medicos():
