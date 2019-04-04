@@ -14,29 +14,56 @@ def marcar_consulta():
                 dados['name'] = nome_paciente
             else:
                 print('Não encontrado!')
+                return marcar_consulta()
 
     
     with open('dados_medicos.json',) as dados_medicos:
         lista_medicos = json.load(dados_medicos)
-        print('Lista de médicos: \n')
+        print('Lista de médicos: ')
         for medico in lista_medicos:
-            print(medico['name'])
+            print('* ', medico['name'])
     nome_medico = input('Escolha seu medico:')
     dados['médico'] = nome_medico
 
-    dados['data'] = int(input('Qual data?')) # Aqui não importar a data ou hora nesse sistema
-    dados['hora'] = int(input('Qual hora?'))
+    dados['data'] = str(input('Qual data?')) # Aqui não importar a data ou hora nesse sistema
+    dados['hora'] = str(input('Qual hora?'))
 
     print('Consulta marcada com sucesso!')
     return dados
 
+
 def listar_consultas():
-    with open('dados_consultas.json',) as dados_consultas:
-        lista_consultas = json.load(dados_consultas)
-        print('Consultas: \n')
-        for consulta in lista_consultas:
-            print(consulta)
-    print('-'*20)
+    try:
+        with open('dados_consultas.json',) as dados_consultas:
+            lista_consultas = json.load(dados_consultas)
+            print('Consultas: \n')
+            for consulta in lista_consultas:
+                print(consulta)
+        print('-'*20)
+    except:
+        print('Nenhuma consulta marcada!')
+        
+
+def remover_consulta():
+    nome_paciente = input('Informe o nome do paciente: ')
+    data_consulta = input('Informe a data da consulta [dd/mm/aaaa]: ')
+    try:
+        with open('dados_consultas.json') as dados_consultas:
+            lista_consultas = json.load(dados_consultas)
+            for paciente in lista_consultas:
+                if paciente['name'] == nome_paciente and paciente['data'] == data_consulta:
+                    lista_consultas.remove(paciente)
+                    with open('dados_consultas.json', mode='w') as dados_consultas:
+                        consultas = json.dumps(lista_consultas)
+                        dados_consultas.write(consultas)
+                        print('Consulta removida com sucesso!\n')
+                else:
+                    print('Consulta não encontrada!\n')
+                    menu_consultas()
+    except:
+        print('Nenhum paciente informado!\n')
+        menu_consultas()
+
 
 
 

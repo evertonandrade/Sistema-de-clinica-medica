@@ -18,12 +18,16 @@ def cadastro_paciente():
 
 
 def listar_pacientes():
-    with open('dados_pacientes.json',) as dados_pacientes:
-        lista_pacientes = json.load(dados_pacientes)
-        print('Pacientes: \n')
-        for paciente in lista_pacientes:
-            print(paciente['name'])
-    print('-'*20)
+    try:
+        with open('dados_pacientes.json',) as dp:
+            arq_pacientes = json.load(dp)
+            print('Pacientes: \n')
+            for paciente in arq_pacientes:
+                print(paciente['name'])
+        print('-'*20)
+    except:
+        print('Nenhum paciente cadastrado!')
+
 
 def menu_pacientes():
     while True:
