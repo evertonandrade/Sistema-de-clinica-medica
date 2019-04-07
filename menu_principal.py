@@ -3,7 +3,7 @@ import medicos as md
 import consultas as ct
 import administracao as adm
 
-" Author: Ian Sandes "
+" Author: Everton Andrade "
 
 
 def menu_principal():
